@@ -8,7 +8,7 @@ const statistics = [
 ];
 
 // Zieladresse für Anfragen aus dem Kontaktformular.
-const contactEmail = "hallo@ihre-domain.at";
+const contactEmail = "hallo@usp-bote.at";
 
 const menuButton = document.querySelector(".menu-button");
 const mobileNav = document.querySelector(".mobile-nav");
