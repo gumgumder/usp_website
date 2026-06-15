@@ -1225,6 +1225,61 @@ h3 {
   inset: 0;
 }
 
+.video-consent {
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(circle at 75% 20%, rgba(23, 105, 224, 0.16), transparent 38%),
+    linear-gradient(135deg, #f7f9fc, #eaf2ff);
+}
+
+.video-consent-content {
+  max-width: 540px;
+  text-align: center;
+}
+
+.video-play {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: linear-gradient(135deg, #2177ed, var(--blue-dark));
+  box-shadow: 0 14px 30px rgba(23, 105, 224, 0.25);
+}
+
+.video-play svg {
+  width: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.video-consent-content h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 1.35rem;
+}
+
+.video-consent-content p {
+  margin: 0 auto 20px;
+  color: var(--muted);
+}
+
+.video-consent-content > a {
+  display: block;
+  margin-top: 12px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .video-fallback {
   margin: 18px 0 0;
   color: var(--muted);
@@ -1521,6 +1576,12 @@ h3 {
   text-align: center;
 }
 
+.form-note a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .form-status {
   margin: 10px 0 0;
   color: var(--green);
@@ -1573,6 +1634,59 @@ h3 {
 
 .footer-bottom p {
   margin: 0;
+}
+
+.legal-main {
+  min-height: calc(100vh - 250px);
+  padding: 70px 0 100px;
+  background: var(--surface);
+}
+
+.legal-document {
+  max-width: 860px;
+  padding: clamp(26px, 5vw, 58px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.legal-document h1 {
+  margin: 0 0 40px;
+  color: var(--navy);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.legal-document h2 {
+  margin: 34px 0 10px;
+  color: var(--navy);
+  font-size: 1.2rem;
+}
+
+.legal-document h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal-document p,
+.legal-document address {
+  margin: 0 0 18px;
+  font-style: normal;
+}
+
+.legal-document a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-document ul {
+  padding-left: 22px;
+}
+
+.legal-document li + li {
+  margin-top: 8px;
 }
 
 @media (min-width: 560px) {
