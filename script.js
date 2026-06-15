@@ -1,15 +1,5 @@
 "use strict";
 
-// Schnell anpassbare Werte für die Statistik-Karten.
-const statistics = [
-  { target: 2500, suffix: "+" },
-  { target: 18000, suffix: "+" },
-  { target: 25, suffix: "+" }
-];
-
-// Zieladresse für Anfragen aus dem Kontaktformular.
-const contactEmail = "hallo@usp-bote.at";
-
 const menuButton = document.querySelector(".menu-button");
 const mobileNav = document.querySelector(".mobile-nav");
 
@@ -38,13 +28,6 @@ if (menuButton && mobileNav) {
 
 const formatNumber = (value) => new Intl.NumberFormat("de-AT").format(value);
 const statElements = document.querySelectorAll(".stat-number");
-
-statElements.forEach((element, index) => {
-  const config = statistics[index];
-  if (!config) return;
-  element.dataset.target = String(config.target);
-  element.dataset.suffix = config.suffix;
-});
 
 const animateNumber = (element) => {
   const target = Number(element.dataset.target);
@@ -85,7 +68,7 @@ const contactForm = document.querySelector("#contact-form");
 const formStatus = document.querySelector("#form-status");
 
 if (contactForm && formStatus) {
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!contactForm.checkValidity()) {
@@ -93,18 +76,31 @@ if (contactForm && formStatus) {
       return;
     }
 
-    const formData = new FormData(contactForm);
-    const subject = encodeURIComponent("Anfrage für eine kostenlose Demo");
-    const body = encodeURIComponent(
-      `Vorname und Nachname: ${formData.get("name")}\n` +
-      `Firmenname: ${formData.get("company")}\n` +
-      `Telefonnummer: ${formData.get("phone")}\n` +
-      `E-Mail-Adresse: ${formData.get("email")}\n\n` +
-      "Ich interessiere mich für eine Demo von USP-Bote."
-    );
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    formStatus.classList.remove("is-error");
+    formStatus.textContent = "Anfrage wird gesendet …";
 
-    formStatus.textContent = "Ihr E-Mail-Programm wird geöffnet.";
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" }
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Die Anfrage konnte nicht gesendet werden.");
+      }
+
+      contactForm.reset();
+      formStatus.textContent = result.message;
+    } catch (error) {
+      formStatus.classList.add("is-error");
+      formStatus.textContent = error.message || "Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.";
+    } finally {
+      submitButton.disabled = false;
+    }
   });
 }
 

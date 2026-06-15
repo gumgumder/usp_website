@@ -14,7 +14,7 @@
   <meta property="og:title" content="Mein Postkorb im Unternehmensserviceportal (USP) automatisch per E-Mail erhalten">
   <meta property="og:description" content="Neue behördliche Nachrichten aus Mein Postkorb automatisch erkennen und direkt per E-Mail erhalten – inklusive Anhängen.">
   <meta property="og:url" content="https://usp-bote.at">
-  <link rel="stylesheet" href="styles.css?v=1.0.4">
+  <link rel="stylesheet" href="styles.css?v=1.0.5">
 
   <script type="application/ld+json">
   {
@@ -424,7 +424,11 @@
             <li><svg viewBox="0 0 20 20"><path d="m5 10 3 3 7-7"/></svg>Einfache Einrichtung erklärt</li>
           </ul>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="contact.php" method="post">
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-row">
             <label for="name">Vorname und Nachname</label>
             <input id="name" name="name" type="text" autocomplete="name" placeholder="Max Mustermann" required>
@@ -472,6 +476,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=1.0.4" defer></script>
+  <script src="script.js?v=1.0.5" defer></script>
 </body>
 </html>
