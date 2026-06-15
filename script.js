@@ -64,26 +64,6 @@ if ("IntersectionObserver" in window) {
   statElements.forEach(animateNumber);
 }
 
-const videoConsent = document.querySelector(".video-consent");
-const videoConsentButton = videoConsent?.querySelector(".video-consent-button");
-
-if (videoConsent && videoConsentButton) {
-  videoConsentButton.addEventListener("click", () => {
-    const videoId = videoConsent.dataset.videoId;
-    if (!videoId) return;
-
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0&autoplay=1`;
-    iframe.title = "USP-Bote – so funktioniert die Lösung";
-    iframe.referrerPolicy = "strict-origin-when-cross-origin";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    iframe.allowFullscreen = true;
-
-    videoConsent.replaceChildren(iframe);
-    videoConsent.classList.remove("video-consent");
-  });
-}
-
 const contactForm = document.querySelector("#contact-form");
 const formStatus = document.querySelector("#form-status");
 
